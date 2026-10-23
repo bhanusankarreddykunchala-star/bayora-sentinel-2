@@ -13,8 +13,10 @@ app = FastAPI(title='Bayora Sentinel 2.0', version='1.0.0')
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://bayora-sentinel-2-px.vercel.app",
+        "https://bayora-sentinel-2-px.vercel.app/",
         "https://bayora-sentinel-2-ki872nnhw-bhanusankarreddykunchala-star.vercel.app",
+        "https://bayora-sentinel-2.vercel.app/",
+
     ],
     allow_credentials=True,
     allow_methods=["*"],
