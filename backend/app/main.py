@@ -14,7 +14,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "https://bayora-sentinel-2-px.vercel.app",
-        "https://bayora-sentinel-2-mw3fyu7hx-bhanusankarreddykunchala-star.vercel.app",
+        "https://bayora-sentinel-2-ki872nnhw-bhanusankarreddykunchala-star.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],
