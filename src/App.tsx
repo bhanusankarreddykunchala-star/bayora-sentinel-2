@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 import {
   AlertTriangle,
   ArrowRight,
@@ -208,7 +209,7 @@ export default function App() {
     setAlertsLoading(true);
     setAlertActionError(null);
     try {
-      const response = await fetch('/api/security-alerts', {
+      const response = await fetch(`${API_BASE_URL}/api/security-alerts`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) {
@@ -337,7 +338,7 @@ export default function App() {
   useEffect(() => {
     const login = async () => {
       try {
-        const response = await fetch('/api/auth/login', {
+        const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username: 'admin', password: 'adminpass' }),
@@ -360,10 +361,10 @@ export default function App() {
     const loadData = async () => {
       try {
         const [overviewResponse, eventsResponse, auditResponse, scorecardResponse] = await Promise.all([
-          fetch('/api/overview', { headers: { Authorization: `Bearer ${token}` } }),
-          fetch('/api/events', { headers: { Authorization: `Bearer ${token}` } }),
-          fetch('/api/audit/verify', { headers: { Authorization: `Bearer ${token}` } }),
-          fetch('/api/scorecard', { headers: { Authorization: `Bearer ${token}` } }),
+          fetch(`${API_BASE_URL}/api/overview`, { headers: { Authorization: `Bearer ${token}` } }),
+          fetch(`${API_BASE_URL}/api/events`, { headers: { Authorization: `Bearer ${token}` } }),
+          fetch(`${API_BASE_URL}/api/audit/verify`, { headers: { Authorization: `Bearer ${token}` } }),
+          fetch(`${API_BASE_URL}/api/scorecard`, { headers: { Authorization: `Bearer ${token}` } }),
         ]);
 
         if (!overviewResponse.ok || !eventsResponse.ok || !auditResponse.ok || !scorecardResponse.ok) {
@@ -505,7 +506,7 @@ export default function App() {
     setIsScanning(true);
 
     try {
-      const response = await fetch('/api/canaries/scan', {
+      const response = await fetch(`${API_BASE_URL}/api/canaries/scan`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
