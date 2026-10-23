@@ -240,7 +240,7 @@ export default function App() {
 
     const loadModuleData = async () => {
       const request = async (url: string) => {
-        const response = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await fetch(`${API_BASE_URL}${url}`, { headers: { Authorization: `Bearer ${token}` } });
         const result = await response.json();
         if (!response.ok) {
           throw new Error(result.detail || `Could not load ${activeSection}.`);
@@ -298,7 +298,7 @@ export default function App() {
     setAlertActionMessage(null);
     setAlertActionError(null);
     try {
-      const response = await fetch(`/api/security-alerts/${encodeURIComponent(alert.id)}/acknowledge`, {
+      const response = await fetch(`${API_BASE_URL}/api/security-alerts/${encodeURIComponent(alert.id)}/acknowledge`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
       });
