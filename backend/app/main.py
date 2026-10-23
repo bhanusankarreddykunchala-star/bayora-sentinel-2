@@ -5,9 +5,20 @@ from typing import Any, Dict, List
 from uuid import uuid4
 
 from fastapi import Depends, FastAPI, Header, HTTPException, status
-from pydantic import BaseModel, Field
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title='Bayora Sentinel 2.0', version='1.0.0')
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "https://bayora-sentinel-2-px.vercel.app",
+        "https://bayora-sentinel-2-mw3fyu7hx-bhanusankarreddykunchala-star.vercel.app",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 USERS: Dict[str, Dict[str, str]] = {
     'admin': {'username': 'admin', 'password': 'adminpass', 'role': 'Administrator', 'tenant_id': 'tenant-admin'},
